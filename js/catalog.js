@@ -5,6 +5,7 @@
 // Set up an empty cart for use on this page.
 const cart = new Cart([]);
 
+
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
 function populateForm() {
@@ -12,7 +13,10 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
   for (let i in Product.allProducts) {
-
+    let option =document.createElement('option')
+    option.value=Product.allProducts[i].name;
+    selectElement.appendChild(option);
+    option.textContent=Product.allProducts[i].name;
   }
 
 }
@@ -23,6 +27,12 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
+event.preventDefault();
+
+//  const item=event.target.product.value;
+// const quantity =event.target.quantity.value;
+console.log(quantity);
+
 
   // Do all the things ...
   addSelectedItemToCart();
@@ -37,10 +47,19 @@ function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
   // TODO: get the quantity
   // TODO: using those, add one item to the Cart
+  let item = document.getElementById('items').value;
+  let quantity = document.getElementById('quantity').value;
+
+  cart.addItem(item, quantity);
+
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+   let counItem =document.getElementById('cart');
+
+
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {

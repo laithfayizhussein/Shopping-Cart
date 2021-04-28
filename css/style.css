@@ -176,6 +176,7 @@ label span {
   border-collapse: collapse;
   margin: auto;
   width: 65%;
+  text-align: center;
 }
 
 #cart thead tr th {

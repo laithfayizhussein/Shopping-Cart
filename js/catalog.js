@@ -13,10 +13,10 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
   for (let i in Product.allProducts) {
-    let option =document.createElement('option')
-    option.value=Product.allProducts[i].name;
+    let option = document.createElement('option')
+    option.value = Product.allProducts[i].name;
     selectElement.appendChild(option);
-    option.textContent=Product.allProducts[i].name;
+    option.textContent = Product.allProducts[i].name;
   }
 
 }
@@ -27,11 +27,11 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
-event.preventDefault();
+  event.preventDefault();
 
-//  const item=event.target.product.value;
-// const quantity =event.target.quantity.value;
-console.log(quantity);
+  //  const item=event.target.product.value;
+  // const quantity =event.target.quantity.value;
+  console.log(quantity);
 
 
   // Do all the things ...
@@ -54,9 +54,17 @@ function addSelectedItemToCart() {
 
 }
 
+let counter = 1;
+
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-   let counItem =document.getElementById('cart');
+  let counItem = document.getElementById('itemCount');
+
+  counItem.innerHTML = '';
+
+  const a = document.createElement('a');
+  itemCount.appendChild(a);
+  a.textContent = `${counter}`;
 
 
 }
@@ -65,6 +73,36 @@ function updateCounter() {
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
   // TODO: Add a new element to the cartContents div with that information
+
+  const cartContents = document.getElementById('cartContents');
+
+  cartContents.innerHTML = '';
+
+  let data = JSON.parse(localStorage.getItem('cart'));
+  if (data) {
+
+
+    console.log(data);
+
+
+    const ulElement = document.createElement('ul');
+    cartContents.appendChild(ulElement);
+
+
+    for (let i = 0; i < data.length; i++) {
+
+
+
+      const liElement = document.createElement('li');
+      ulElement.appendChild(liElement);
+      liElement.textContent = `item = ${data[i].product}, quantity = ${data[i].quantity}`;
+
+
+
+    }
+
+    counter++;
+  }
 }
 
 // Set up the "submit" event listener on the form.
